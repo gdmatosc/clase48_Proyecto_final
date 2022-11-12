@@ -201,7 +201,7 @@ getOrden=(req,res)=>{
     let username=req.user ? req.user.username : 'anonimo'
     loger.verbose(username,{recurso:"[reqSessionUsername]"})
     let web= this.apiAuth.getOrden(username)
-    return res.render('Orden.ejs',web)
+    return res.render('orden.ejs',web)
 }
 
 postUploadFile=(req, res) => {
