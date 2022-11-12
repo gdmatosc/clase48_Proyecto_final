@@ -84,10 +84,6 @@ function imprimirInputs(){
         <div class="containerBotones">
         <div id="BotonEnvio">
         </div>
-        <div>
-        <br>
-        <button class="btnLimpiarBD" onclick=eliminarContenidoBD() type="submit">LimpiarBD</button>
-        </div>
         </div>
         <br><br>  `
     html+=`</div>`

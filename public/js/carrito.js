@@ -10,7 +10,7 @@ fetch(`/apiClientes/objetosCarrito`,{headers:{admin:'true'}})
     console.log("[carrito.js][fetch-objetosCarrito] (msg) productDatos.products.length: ",productDatos.products.length)
     let html =`
     <div class="form-group row">
-                                <label for="email" class="col-12 col-md-2 col-form-label h2">Correo :</label>
+                                <label for="email" class="col-12 col-md-2 col-form-label h2">Dirección de entrega :</label>
                                 <div class="col-12 col-md-10">
                                     <input type="text" class="form-control" id="idDireccionEntrega" placeholder="Ingresa tu direccion de entrega" name="direccionEntrega">
                                 </div>
