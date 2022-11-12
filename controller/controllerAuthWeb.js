@@ -22,8 +22,6 @@ class ControllerAuth{
 constructor(){
     this.apiAuth=new ApiAuth()
     this.apiClientes=new ApiClientes()
-    //this.apiAuthGetPublic=this.apiAuth.getPublic.bind(this)
-    //this.apiAuthPostUploadFile=this.apiAuth.postUploadFile.bind(this)
     this.form = new formidable.IncomingForm()
 }
 
@@ -38,10 +36,7 @@ getRoot=(req,res)=>{
 }
 
 getLogin=(req,res)=>{
-    //const loge=factoryLog(`${modname}[getlogin]`)
     const loger=logd.child({modulo:`${modname}[getLogin]`})
-    //let web1=this.apiAuthGetPublic()
-    //logd.verbose(web1,{recurso:"(pruebas en try)[web1]"})
     loger.debug(req.isAuthenticated(),{recurso:'(antes del if req.isAuthenticated())[req.isAuthenticated()]'})
     if(req.isAuthenticated()){
         loger.debug('(inicio if req.isAuthenticated())',{recurso:'[na]'})
@@ -55,7 +50,6 @@ getLogin=(req,res)=>{
         let telephone=req.user.telephone
         let webAuth= this.apiAuth.getLogin(username,name,email,address,age,telephone)
         logd.verbose(webAuth,{recurso:"(pruebas en try)[webAuth]"})
-        //res.send('login-ok')
         res.render('productos',webAuth)
     }else{
         loger.debug('(inicio else req.isAuthenticated())',{recurso:'[na]'})
@@ -67,7 +61,6 @@ getLogin=(req,res)=>{
 postLogin=async (req,res)=>{
      const loger=logd.child({modulo:`${modname}[postLogin]`})
     // loger.debug('(antes de this.passportAuth.authLogin)',{recurso:'[na]'})
-    //PassportAuth.authLoginNew(req, res)
     loger.debug(req.isAuthenticated(),{recurso:'(despues de this.passportAuth.authLogin)[req.isAuthenticated()]'})
 
     if(req.isAuthenticated()){
@@ -112,7 +105,7 @@ postSignup=(req,res)=>{
 
 getUserData=(req,res)=>{
     if (req.user === undefined) {
-        // The user is not logged in
+        // El usuario no se ha logueado
         res.json({});
     } else {
         res.json({
@@ -136,7 +129,6 @@ getFailLogin=(req,res)=>{
 /* #region. 3.Authorization clientes */
 
 getUserProfile=(req,res)=>{
-    //logr.verbose(req.session);
     const loger=logd.child({modulo:`${modname}[get-userProfile]`})
     loger.verbose(req,{recurso:"[req]"})
     loger.verbose(req.session,{recurso:"[req.session]"})
@@ -171,7 +163,6 @@ getProductos=async (req,res)=>{
     loger.verbose(username,{recurso:"[reqSessionUsername]"})
     let web= this.apiAuth.getProductos(username)
     return res.render('productos.ejs',web)
-    //return res.sendFile(path.resolve(__dirname, '../Clase28.desafio/f1.views')+'/productos.html')
 }
 
 getProductosDetalle=async (req,res)=>{
@@ -188,40 +179,26 @@ getProductosDetalle=async (req,res)=>{
         let detalle=req.params.detalle
         let objetosDetalle=await this.apiClientes.obtenerObjetosDetalle(detalle,emailUser) 
         return res.render('productosDetalle.ejs',{username:username,productDatos:objetosDetalle})
-        //return res.sendFile(path.resolve(__dirname, '../Clase28.desafio/f1.views')+'/productos.html')
     }
     catch(error){
         logr.warn(error,{recurso:'[getproductosDetalle()][error]'})
-        //path.resolve(__dirname, '../public')+'/login.html'
-        //return res.render('logout',{username:'anonimo'})
-        //632277602ae82cef0aa49045
-        //632277862ae82cef0aa49051
         res.write('El producto no existe')
         res.end()
-        //res.sendFile(path.resolve(__dirname, '../public')+'/login.html')
     }
     
 }
 
 getCarrito=(req,res)=>{
-    //logr.verbose(req.session);
     const loger=logd.child({modulo:`${modname}[get-Carrito]`})
-    //let username=req.user.username
-    //let username='anonimo'
     let username=req.user ? req.user.username : 'anonimo'
-    //loger.verbose(res,{recurso:"[res]"})
     loger.verbose(username,{recurso:"[reqSessionUsername]"})
     let web= this.apiAuth.getCarrito(username)
     return res.render('carrito.ejs',web)
 }
 
 getOrden=(req,res)=>{
-    //logr.verbose(req.session);
     const loger=logd.child({modulo:`${modname}[get-Orden]`})
-    //let username=req.user.username
-    //let username='anonimo'
     let username=req.user ? req.user.username : 'anonimo'
-    //loger.verbose(res,{recurso:"[res]"})
     loger.verbose(username,{recurso:"[reqSessionUsername]"})
     let web= this.apiAuth.getOrden(username)
     return res.render('Orden.ejs',web)
@@ -229,27 +206,19 @@ getOrden=(req,res)=>{
 
 postUploadFile=(req, res) => {
     //basic setup
-    
     const loger=logd.child({modulo:`${modname}[post-api/uploadFile`})
-    //const uploadFolder = path.join(__dirname, "public", "imgUser")
     const uploadFolder = path.resolve(__dirname, '../public')+'/imgUser'
-    
     loger.verbose(uploadFolder,{recurso:"[uploadFolder]"})
     //basic configuration
     this.form.uploadDir = uploadFolder
-    //console.log(form);
-    loger.verbose(JSON.stringify(this.form),{recurso:"[this.form]"})
+      loger.verbose(JSON.stringify(this.form),{recurso:"[this.form]"})
     //parsing
     
     let apiAuthForm=this.apiAuth
-
     this.form.parse(req, function (err, fields, files) {
-        //console.log(fields)
-        //console.log(files)
         loger.verbose(fields,{recurso:"[fields]"})
         loger.verbose(JSON.stringify(files),{recurso:"[files]"})
         const file = files.myFile;
-        
         let fileUpload= apiAuthForm.postUploadFile(uploadFolder,file)
 
         if (err) {
@@ -258,7 +227,6 @@ postUploadFile=(req, res) => {
           }
 
         else {
-            //console.log(file)
             loger.verbose(JSON.stringify(file),{recurso:"[file]"})
             // actualizar nombre del archivo
             loger.verbose(file.originalFilename,{recurso:"[file.originalFilename]"})
@@ -267,14 +235,9 @@ postUploadFile=(req, res) => {
                 res.end();
             } catch (error) {
                 loger.warn(`Error en sección update name: ${error}`,{recurso:'[error]'});
-                //console.log(error);
             }
-   
         }
-        
       });
-    
-    
   };
 
  /* #endregion */
@@ -282,7 +245,6 @@ postUploadFile=(req, res) => {
 /* #region. 4.Authorization Admin */
 
 getAdminConfig=(req,res)=>{
-    //logr.verbose(req.session);
     let username=req.user.username
     let dato1='pruebas'
     let id_proceso=process.pid

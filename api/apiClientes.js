@@ -73,16 +73,7 @@ class ApiClientes{
             fieldValor=detalle
         }else{
             console.log("[apiClientes.js][obtenerObjetosDetalle()] (msg) (inicio del else final)")
-            //return res.status(400).send({error: `No ha ingresado un busqueda valida`})
-            //return {message:`No ha ingresado un busqueda valida`}
-            //throw new Error(`No ha ingresado un busqueda valida`)
-
-            // const {error}=ProductoSchema.validate(producto)
-            // logr.warn(error,{recurso:'[error]'})
-            // if(error){
-            //     throw error
-            // }
-            //return path.resolve(__dirname, '../public')+'/login.html'
+            
             throw {error:`No ha ingresado un busqueda valida`}
         }
         
@@ -94,9 +85,7 @@ class ApiClientes{
     async guardarObjetos(dataBody){
         logr.debug('guardarObjetos',{recurso:'[na]'})
         dataBody.precio=Number(dataBody.precio);
-        // if(!dataBody.nombre || !dataBody.img || !dataBody.precio){
-        //     return res.status(400).send({error: `Los datos están incompletos ahora: ${req.body}`});
-        // }
+        
         ApiClientes.asegurarObjetoValida(dataBody,true)
         return await DAO.productosGeneral.save(dataBody)
     }

@@ -92,16 +92,7 @@ class ContenedorMongo {
 }
 /* #endregion */
 
-/*
-    async editByBody(obj){
-        console.log('UPDATE BY BODY');
-        const objUpdated=await this.model.findOneAndUpdate(
-            {"subschema.keyName": {keyName: "keyName_Valor"}.keyName},
-            {$set:{"subschema.keyName.$": {KeyNameTarget:"value"}}}
-        )
-        return objUpdated
-    }
-*/
+
 
 
 module.exports=ContenedorMongo;

@@ -119,12 +119,7 @@ async function crearOrden(productosComprados){
     console.log("[carrito.js][crearOrden()] (msg) datosOrden0: ",datosOrden0)
     let datosOrden1=await datosOrden0.json()
     console.log("[carrito.js][crearOrden()] (msg) datosOrden1: ",datosOrden1)
-    // .then(response=>response.json())
-    // .then(productDatos=>{
-    //     console.log("[carrito.js][obtenerDatosOrden()] : productDatos",productDatos)
-    //     console.log("[carrito.js][obtenerDatosOrden()] : productDatos",productDatos.products)
-    //     //let textProductDatos=JSON.stringify(productDatos.products)
-    //     console.log("[carrito.js][obtenerDatosOrden()] : productDatos.length",productDatos.products.length)
+    
     cantidadOrden=datosOrden1.length
     //     //////////imprimirTablaCompleta(productDatos)
 
@@ -136,8 +131,8 @@ async function crearOrden(productosComprados){
     carritoDatos.numeroOrden=cantidadOrden+1
     await guardarDatosOrden(carritoDatos)
     eliminarCarrito()
+    notificarAdmin(productosComprados)
     window.location.href = "/orden"
-    //notificarAdmin(productosComprados)
 
 }
 
@@ -175,30 +170,8 @@ async function guardarDatosOrden(datosCarritoLast){
     let datosOrdenConfirmar0=await fetch('/apiClientes/objetosOrden', {method: 'POST',headers:{'content-type':'application/json'},body: newPayload})
     ///let datosOrden1=await datosOrden0.json()
     console.log("[carrito.js][guardarDatosOrden()][after fetch] : datosCarrito0",datosOrdenConfirmar0)
-    ///console.log("[carrito.js][guardarDatosOrden()][after fetch] : datosCarrito1",datosOrden1)
-    //  .then(res => {
-    //     console.log("[carrito.js][guardarDatosOrden()][fetch-then res] : res",res)
-    //     res.json()
+    
 
-    //     //res.json()
-    //         /*Toastify({
-    //             text: "Guardado!",duration: 3000,gravity: 'top',
-    //             offset: {x: '60em', y: '12em' },
-    //             style: {background: 'linear-gradient(to right, rgb(4, 88, 25), rgb(16, 100, 37))'}
-    //         }).showToast();*/
-            
-    //     })
-        
-    //  .then(data => {
-    //     console.log("[carrito.js][guardarDatosOrden()][fetch-then data] : data",data)
-    //     console.log("[carrito.js][guardarDatosOrden()][fetch-then data] : newPayload",newPayload)
-        
-    // })
-
-    /*
-     .catch(error=>{
-        console.log(error)
-     });*/
 }
 
 function eliminarCarrito(){
@@ -218,26 +191,25 @@ function eliminarCarrito(){
 }
 
 function notificarAdmin(productosComprados){
-    //console.log("[carritoClientes.js][notificarAdmin] (msg) productosComprados",productosComprados)
+    console.log("[carritoClientes.js][notificarAdmin] (msg) productosComprados",productosComprados)
     
-    //deshabilitaciontemporal
 
-    // newPayload=JSON.stringify(productosComprados)
-    // fetch('/apiOperaciones/notificacion', {method: 'POST',headers:{'content-type':'application/json'},body: newPayload})
-    //  .then(res => {
-    //     res
+    newPayload=JSON.stringify(productosComprados)
+    fetch('/apiOperaciones/notificacion', {method: 'POST',headers:{'content-type':'application/json'},body: newPayload})
+     .then(res => {
+        res
             
-    //     })
+        })
         
-    //  .then(data => {
-    //     console.log("[carritoClientes.js][fecth-POST](dataPostEnviarDatos) data:",data)
-    //     console.log("[carritoClientes.js][fecth-POST](newPayloadFetchEnviarDatos) newPayload: ",newPayload)
+     .then(data => {
+        console.log("[carritoClientes.js][fecth-POST](dataPostEnviarDatos) data:",data)
+        console.log("[carritoClientes.js][fecth-POST](newPayloadFetchEnviarDatos) newPayload: ",newPayload)
         
-    // })
+    })
     
-    //  .catch(error=>{
-    //     console.log(error)
-    //  });
+     .catch(error=>{
+        console.log(error)
+     });
 }
 
 
