@@ -39,7 +39,7 @@ const modoCluster=process.argv[3]=='CLUSTER'
 const yargs=require('yargs')(process.argv.slice(2))
 const argv=yargs
     .default({
-        PORT: 8081,
+        PORT: process_PORT,
         ruta: 'local'
     })
     .alias({
@@ -48,7 +48,7 @@ const argv=yargs
     .boolean('admin')
     .argv
 
-logr.info(argv.PORT,{recurso:'[Puerto]'})
+logr.info(process_PORT,{recurso:'[Puerto]'})
 
 /* #endregion */
 
@@ -82,8 +82,8 @@ let messages=[]
 
 let GetComentarios=()=>{
     const options = {
-        host : 'localhost',
-        port : argv.PORT,
+        host : process.env.HOSTNAME,
+        port : process_PORT,
         path: '/apiClientes/comentarios',
         method: 'GET'
     };
