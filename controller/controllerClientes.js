@@ -28,22 +28,41 @@ constructor(){
 /* #region. 2.Chat*/
 
 obtenerComentariosTodos= async (req, res) => {
-    let comentariosTodos=await this.apiClientes.obtenerComentariosTodos() 
-    //console.log("contenedorVar.comentariosMongoDB.routerGet",contenedorVar)//debug
-    res.json(comentariosTodos)
+    try{
+        let comentariosTodos=await this.apiClientes.obtenerComentariosTodos() 
+        //console.log("contenedorVar.comentariosMongoDB.routerGet",contenedorVar)//debug
+        res.json(comentariosTodos)
+
+    }catch(error){
+        logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
+        throw error
+    }
+    
 };
 
 guardarComentarios=async (req,res)=>{
-    const dataBody=req.body;
-    let comentariosGuardados=await this.apiClientes.guardarComentarios(dataBody)
-    //console.log("username-text.comentariosFile.routerPost",dataBody)//debug
-    res.send("Guardado")
+    try{
+        const dataBody=req.body;
+        let comentariosGuardados=await this.apiClientes.guardarComentarios(dataBody)
+        //console.log("username-text.comentariosFile.routerPost",dataBody)//debug
+        res.send("Guardado")
+    }catch(error){
+        logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
+        throw error
+    }
+    
 }
 
 borrarComentariosTodos=async(req,res)=>{
-    let comentariosTodosBorrados=await this.apiClientes.borrarComentariosTodos()
-    res.json(comentariosTodosBorrados)
-    //console.log("borradoTotal.comentariosFile.routerDelete")//debug
+    try{
+        let comentariosTodosBorrados=await this.apiClientes.borrarComentariosTodos()
+        res.json(comentariosTodosBorrados)
+        //console.log("borradoTotal.comentariosFile.routerDelete")//debug
+    }catch(error){
+        logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
+        throw error
+    }
+    
 }
 
 /* #endregion */
@@ -58,6 +77,7 @@ obtenerObjetosTodos=async (req, res) => {
     }
     catch(error){
         logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
+        throw error
     }
     
 }
@@ -71,6 +91,7 @@ obtenerObjetosDetalle=async (req, res) => {
     }
     catch(error){
         logr.warn(error,{recurso:'[obtenerObjetosDetalle()][error]'})
+        throw error
     }
     
 }
@@ -84,6 +105,7 @@ guardarObjetos=async (req,res)=>{
     }
     catch(error){
         logr.warn(error,{recurso:'[guardarObjetos()][error]'})
+        throw error
     }
     
 }
@@ -97,6 +119,7 @@ borrarObjeto=async(req,res)=>{
     }
     catch(error){
         logr.warn(error,{recurso:'[borrarObjeto()][error]'})
+        throw error
     }
 }
 
@@ -108,6 +131,7 @@ borrarObjetosTodos=async(req,res)=>{
     }
     catch(error){
         logr.warn(error,{recurso:'[borrarObjetosTodos()][error]'})
+        throw error
     }
     
 }
@@ -117,20 +141,33 @@ borrarObjetosTodos=async(req,res)=>{
 /* #region. 4.Carrito*/
 
 obtenerObjetosCarritosTodos=async(req,res)=>{
-      loger=logd.child({modulo:`${modname}[obtenerObjetosCarritosTodos()]`})
-      //loger.verbose(i,{recurso:"i:"})
-      loger.verbose('inicio',{recurso:"[na]"})
-    let objetosCarritosTodos=await this.apiClientes.obtenerObjetosCarritosTodos()
-      loger.verbose(objetosCarritosTodos,{recurso:"objetosCarritosTodos:"})
-    res.json(objetosCarritosTodos)
+    try{
+        loger=logd.child({modulo:`${modname}[obtenerObjetosCarritosTodos()]`})
+        //loger.verbose(i,{recurso:"i:"})
+        loger.verbose('inicio',{recurso:"[na]"})
+        let objetosCarritosTodos=await this.apiClientes.obtenerObjetosCarritosTodos()
+          loger.verbose(objetosCarritosTodos,{recurso:"objetosCarritosTodos:"})
+        res.json(objetosCarritosTodos)
+    }catch(error){
+        logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
+        throw error
+    }
+      
 }
 
 guardarObjetosCarritosTodos=async(req,res)=>{
-    let product=req.body
-    //console.log("producto ingresado: ",product) //debug
-    let objetosCarritoGuardados=await this.apiClientes.guardarObjetosCarritosTodos(product) 
-    res.json(objetosCarritoGuardados)
+    try{
+        let product=req.body
+        //console.log("producto ingresado: ",product) //debug
+        let objetosCarritoGuardados=await this.apiClientes.guardarObjetosCarritosTodos(product) 
+        res.json(objetosCarritoGuardados)
+    }catch(error){
+        logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
+        throw error
+    }
+    
 }
+
 
 borrarObjetoCarritosTodos=async(req,res)=>{
     try{
@@ -139,6 +176,7 @@ borrarObjetoCarritosTodos=async(req,res)=>{
         res.json(objetosCarritoBorrados)
         
     }catch(error){
+        logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
         throw error
     }
 }
@@ -150,6 +188,7 @@ borrarCarrito=async(req,res)=>{
         res.json(objetosCarritoBorrados)
         
     }catch(error){
+        logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
         throw error
     }
 }
@@ -159,46 +198,63 @@ borrarCarrito=async(req,res)=>{
 /* #region. 5.Orden*/
 
 obtenerObjetosOrdenTodos=async(req,res)=>{
-      loger=logd.child({modulo:`${modname}[obtenerObjetosOrdenTodos()]`})
-      //loger.verbose(i,{recurso:"i:"})
-      loger.verbose('inicio',{recurso:"[na]"})
-    let objetosOrdenTodos=await this.apiClientes.obtenerObjetosOrdenTodos()
-      loger.verbose(objetosOrdenTodos,{recurso:"objetosOrdenTodos:"})
-    res.json(objetosOrdenTodos)
-    // if (objetosOrdenTodos===[] || objetosOrdenTodos===null || objetosOrdenTodos===undefined || objetosOrdenTodos.length===0){
-    //     //res.send("hola")
-    //     loger.verbose('en if multicondicional',{recurso:"[na]"})
-    // }  
-    // else {
-    //     loger.verbose('inicio de else (objetosOrdenTodos)',{recurso:"[na]"})
-    //     res.json(objetosOrdenTodos)
-    // }
+    try{
+        loger=logd.child({modulo:`${modname}[obtenerObjetosOrdenTodos()]`})
+        //loger.verbose(i,{recurso:"i:"})
+        loger.verbose('inicio',{recurso:"[na]"})
+      let objetosOrdenTodos=await this.apiClientes.obtenerObjetosOrdenTodos()
+        loger.verbose(objetosOrdenTodos,{recurso:"objetosOrdenTodos:"})
+      res.json(objetosOrdenTodos)
+    }catch(error){
+        logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
+        throw error
+    }
+      
+   
 }
 
 guardarObjetosOrdenTodos=async(req,res)=>{
-    let product=req.body
-    //console.log("producto ingresado: ",product) //debug
-    let objetosOrdenGuardados=await this.apiClientes.guardarObjetosOrdenTodos(product) 
-    res.json(objetosOrdenGuardados)
+    try{
+        let product=req.body
+        //console.log("producto ingresado: ",product) //debug
+        let objetosOrdenGuardados=await this.apiClientes.guardarObjetosOrdenTodos(product) 
+        res.json(objetosOrdenGuardados)
+    }catch(error){
+        logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
+        throw error
+    }
+    
 }
 
 obtenerObjetosOrden=async(req,res)=>{
-      loger=logd.child({modulo:`${modname}[obtenerObjetosOrden()]`})
-      //loger.verbose(i,{recurso:"i:"})
-      loger.verbose('inicio',{recurso:"[]"})
-    const {id}=req.params;
-    let objetosOrden=await this.apiClientes.obtenerObjetosOrden(id)
-      loger.verbose(objetosOrden,{recurso:"objetosOrden:"})
-    res.json(objetosOrden)
+    try{
+        loger=logd.child({modulo:`${modname}[obtenerObjetosOrden()]`})
+        //loger.verbose(i,{recurso:"i:"})
+        loger.verbose('inicio',{recurso:"[]"})
+      const {id}=req.params;
+      let objetosOrden=await this.apiClientes.obtenerObjetosOrden(id)
+        loger.verbose(objetosOrden,{recurso:"objetosOrden:"})
+      res.json(objetosOrden)
+    }catch(error){
+        logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
+        throw error
+    }
+      
 }
 
 guardarObjetosOrden=async(req,res)=>{
-    let product=req.body
-    //console.log("producto ingresado: ",product) //debug
-    const cartID=req.params.id
-    //console.log("cartID: ",cartID) //debug
-    let objetosOrdenGuardados=await this.apiClientes.guardarObjetosOrden(cartID,product) 
-    res.json(objetosOrdenGuardados)
+    try{
+        let product=req.body
+        //console.log("producto ingresado: ",product) //debug
+        const cartID=req.params.id
+        //console.log("cartID: ",cartID) //debug
+        let objetosOrdenGuardados=await this.apiClientes.guardarObjetosOrden(cartID,product) 
+        res.json(objetosOrdenGuardados)
+    }catch(error){
+        logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
+        throw error
+    }
+   
 }
 
 /* #endregion */

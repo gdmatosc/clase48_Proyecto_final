@@ -138,7 +138,7 @@ getUserProfile=(req,res)=>{
     let address=req.user.address
     let age=req.user.age
     let telephone=req.user.telephone
-    loger.verbose(username,{recurso:"[username]"})
+    //loger.verbose(username,{recurso:"[username]"})
     if(!username) return res.redirect('/login')
     let web= this.apiAuth.getUserProfile(username,name,email,address,age,telephone)
     return res.render('userProfile',web)
