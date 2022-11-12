@@ -27,10 +27,10 @@ class RouterAuth{
 
         router.get('/userProfile',PassportAuth.checkAuthentication,this.controllerAuth.getUserProfile)
         router.get('/chat',PassportAuth.checkAuthentication,this.controllerAuth.getChat)
-        router.get('/productos',PassportAuth.noCheckAuthentication,this.controllerAuth.getProductos)
+        router.get('/productos',PassportAuth.checkAuthentication,this.controllerAuth.getProductos)
         router.get('/productos/:detalle',PassportAuth.noCheckAuthentication,this.controllerAuth.getProductosDetalle)
         router.get('/carrito',PassportAuth.noCheckAuthentication,this.controllerAuth.getCarrito)
-        router.get('/orden',PassportAuth.noCheckAuthentication,this.controllerAuth.getOrden)
+        router.get('/orden',PassportAuth.checkAuthentication,this.controllerAuth.getOrden)
         router.post('/uploadFile',PassportAuth.checkAuthentication,this.controllerAuth.postUploadFile)
 
         router.get('/admin/config',PassportAuth.checkAuthentication,this.controllerAuth.getAdminConfig)
