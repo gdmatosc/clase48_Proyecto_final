@@ -13940,3 +13940,8 @@
 [32minfo[39m: [server.js] [Puerto] 	[32m8081[39m [12-11-22 01:14:02.992 PM]
 [32minfo[39m: [server.js][Pruebas] [na] 	[32mTest Info message[39m [12-11-22 01:14:03.008 PM]
 [32minfo[39m: [server.js] [listen] 	[32mServer desplegado en http://127.0.0.1:8081[39m [12-11-22 01:14:03.026 PM]
+[32minfo[39m: [indexDAO.js][FactoryDAO] typeDB 	[32mmongoCDB[39m [12-11-22 01:44:16.965 PM]
+[32minfo[39m: [indexDAO.js][FactoryDAO] typeDB 	[32mmongoCDB[39m [12-11-22 01:44:17.079 PM]
+[32minfo[39m: [server.js] [Puerto] 	[32m8081[39m [12-11-22 01:44:17.481 PM]
+[32minfo[39m: [server.js][Pruebas] [na] 	[32mTest Info message[39m [12-11-22 01:44:17.502 PM]
+[32minfo[39m: [server.js] [listen] 	[32mServer desplegado en http://127.0.0.1:8081[39m [12-11-22 01:44:17.527 PM]

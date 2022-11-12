@@ -10,11 +10,11 @@ const chatMongoCDBDAO=require('./chat/chatMongoCDBDAO')
 const productosGeneralFileDAO=require('./productos/productosFileDAO')
 const productosGeneralMongoLDBDAO=require('./productos/productosLDBDAO')
 const productosGeneralMongoCDBDAO=require('./productos/productosCDBDAO')
-const proveedoresGeneralMongoLDBDAO=require('./productos/proveedoresLDBDAO')
 const carritoProductosFileDAO=require('./productos/carritoProdFileDAO')
 const carritoProductosMongoLDBDAO=require('./productos/carritoProdLDBDAO')
 const carritoProductosMongoCDBDAO=require('./productos/carritoProdCDBDAO')
 const ordenProductosMongoCDBDAO=require('./productos/ordenProdCDBDAO')
+const ordenProductosMongoLDBDAO=require('./productos/ordenProdLDBDAO')
 
 const logd = require('../../logging.js')
 const modname='[indexDAO.js]'
@@ -42,7 +42,7 @@ const FactoryDAO=()=>{
             chatGeneral:new chatMongoLDBDAO(),
             productosGeneral: new productosGeneralMongoLDBDAO(),
             carritoProductos: new carritoProductosMongoLDBDAO(),
-            //ordenProductos: new ordenProductosMongoLDBDAO(),
+            ordenProductos: new ordenProductosMongoLDBDAO(),
         }
     } else if(typeDB=='mongoCDB'){
         loger.verbose(`Generate DAO with Mongo Cdb: ${typeDB}`,{recurso:'typeDB'})
