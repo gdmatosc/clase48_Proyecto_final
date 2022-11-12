@@ -245,17 +245,15 @@ postUploadFile=(req, res) => {
 /* #region. 4.Authorization Admin */
 
 getAdminConfig=(req,res)=>{
+
+    let username_mongodb=process.env.MONGO_USERNAME
+    let tipo_persistencia=process.env.TIPO_PERSISTENCIA
+    let url_mongodb=process.env.MONGO_URL
+    let mail_admin=process.env.ADMIN_EMAIL
     let username=req.user.username
-    let dato1='pruebas'
-    let id_proceso=process.pid
-    let nombre_plataforma=process.platform
-    let version_node=process.version
-    let carpeta_proyecto=process.cwd()
-    let path_ejecucion=process.execPath
-    let memoria_reservada=process.memoryUsage.rss()
-    let argumentos_entrada=process.execArgv
+    
     logr.verbose(username,{recurso:"reqSessionUsername.appGet"})
-    let web= this.apiAuth.getAdminConfig(username,id_proceso,nombre_plataforma,version_node,carpeta_proyecto,path_ejecucion,memoria_reservada,argumentos_entrada)
+    let web= this.apiAuth.getAdminConfig(username,username_mongodb,tipo_persistencia,url_mongodb,mail_admin)
     return res.render('adminConfig.ejs',web)
 }
 

@@ -5,8 +5,7 @@
 /* #endregion */ 
 
 const socket=io.connect();
-//const element1=document.getElementById('form1ro')
-//const element2=document.getElementById('form2do') <img src="./img/icon_48px_man1.png" style='width:40px;'>
+
 console.log('socket ui')
 let usuarioElegidoID=1
 let textoIn=''
@@ -42,11 +41,6 @@ const render=(data)=>{
     }).join('');
     document.getElementById('messages').innerHTML=html;
 }
-//Recepción de datos del socket
-/*socket.on('messages',(messages)=>{
-    console.log(messages);
-    render2(messages);
-}) */
 
 /* #endregion */ 
 
@@ -72,7 +66,6 @@ function imprimirSelect(){
     </div>
     <br>`
     document.getElementById('virtualSelect').innerHTML=html
-    //form1EnvioDatos()
 }
 
 function imprimirInputs(){
@@ -99,7 +92,6 @@ function imprimirInputs(){
         <br><br>  `
     html+=`</div>`
     document.getElementById('virtualForm').innerHTML=html
-    //form1EnvioDatos()
 }
 
 function imprimirBotonEnvio(){
@@ -186,12 +178,10 @@ function groupInputsEnviarDatos(dato1,dato2,dato3){
             console.log("resPostFetch")
             res}).then(data => {
             console.log("dataPostFetch")
-        //console.log("dataPost",data)
-        //console.log("usuarioSendParsed.fetch.apiComentariosFile",usuarioSendParsed)
+      
     });
         
     console.log("usuarioSendParsed.groupInputsEnviarDatos-final",usuarioSendParsed)
-    //socket.emit('new-message',usuarioSendParsed);
     socket.emit('new-message',usuarioSendParsed);
 }
 

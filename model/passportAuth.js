@@ -1,6 +1,9 @@
 const passport=require('passport')
 const LocalStrategy=require('passport-local').Strategy
 const UsersModel=require('../model/models/user.model')
+const fnCom=require('../comunicaciones')
+const procAdminEmail=process.env.ADMIN_EMAIL
+
 const logd = require('../logging.js')
 const modname='[passportAuth.js]'
 const logr=logd.child({modulo:`${modname}`})

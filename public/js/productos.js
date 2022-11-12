@@ -101,7 +101,6 @@ fetch('/apiClientes/objetos',{headers:{admin:'true'}})
 
 /* #region. 4.Actualizar los productos comprados en carrito*/
 
-
 let agregarCarritoNew=(dato1,dato2,dato3,dato4,dato5)=>{
     let nuevoProducto={}
     nuevoProducto.nombre=dato1

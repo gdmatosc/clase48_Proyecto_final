@@ -6,9 +6,7 @@ fetch(`/apiClientes/objetosOrden`,{headers:{admin:'true'}})
     cantidadOrden=ordenDatos.length
     console.log("[orden.js][fetch-objetosCarrito] (msg) cantidadOrden: ",cantidadOrden)
     console.log("[orden.js][fetch-objetosCarrito] (msg) ordenDatos.products: ",ordenDatos[cantidadOrden-1].products)
-    // let textordenDatos=JSON.stringify(ordenDatos.products)
-    //console.log("productosGetCart: ",textordenDatos)
-    // console.log("[orden.js][fetch-objetosCarrito] (msg) ordenDatos.products.length: ",ordenDatos.products.length)
+    
     let html=`</div>`
     for (let i=0, j=ordenDatos.length-1; i < ordenDatos.length; i++, j--){
         html+=`</div>`
@@ -65,17 +63,6 @@ fetch(`/apiClientes/objetosOrden`,{headers:{admin:'true'}})
     
     document.getElementById('carrito1').innerHTML=html
 
-
-    // html+=`<div class="row justify-content-between">
-    //          <div class="col-md-4 mb-2">
-    //              <a href="/productos" class="btn btn-info btn-block">Seguir comprando</a>
-    //          </div>
-    //          <div class="col-xs-12 col-md-4">
-    //          </div>
-    //        </div>`
-    
-    // document.getElementById('ordenNumero').innerHTML=html0
-
     
 })
 .catch(error=>{
@@ -83,10 +70,5 @@ fetch(`/apiClientes/objetosOrden`,{headers:{admin:'true'}})
 });
 
 
-
-
-
-
-//data-id="${product.id}"
 
 

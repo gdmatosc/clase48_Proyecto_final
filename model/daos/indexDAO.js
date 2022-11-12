@@ -22,8 +22,8 @@ const logr=logd.child({modulo:`${modname}`})
 
 /* #endregion */ 
 
-
-let typeDB='mongoCDB'
+let typeDB=process.env.TIPO_PERSISTENCIA
+//let typeDB='mongoCDB'
 //let typeDB='file'
 const FactoryDAO=()=>{
     const loger=logd.child({modulo:`${modname}[FactoryDAO]`})

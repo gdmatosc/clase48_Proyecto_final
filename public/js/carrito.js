@@ -121,12 +121,6 @@ async function crearOrden(productosComprados){
     console.log("[carrito.js][crearOrden()] (msg) datosOrden1: ",datosOrden1)
     
     cantidadOrden=datosOrden1.length
-    //     //////////imprimirTablaCompleta(productDatos)
-
-    // })
-    // .catch(error=>{
-    //     console.log(error)
-    // });
 
     carritoDatos.numeroOrden=cantidadOrden+1
     await guardarDatosOrden(carritoDatos)
@@ -140,24 +134,13 @@ async function obtenerDatosCarrito (){
 
     let datosCarrito0=await fetch('/apiClientes/objetosCarrito',{headers:{admin:'true'}})
     let datosCarrito1=await datosCarrito0.json()
-    // .then(response=>response.json())
-    // .then(productDatos=>{
-    //     console.log("[carrito.js][obtenerDatosCarrito()][fetch] : productDatos",productDatos)
-    //     console.log("[carrito.js][obtenerDatosCarrito()][fetch] : productDatos.length",productDatos.length)
     let nuevoDatoCarrito={}
-    //nuevoDatoCarrito.email=productDatos.email
     nuevoDatoCarrito.direccionEntrega=fnDireccionEntrega()
     nuevoDatoCarrito.email=datosCarrito1.email
     nuevoDatoCarrito.estado='generada'
     nuevoDatoCarrito.products=datosCarrito1.products
     nuevoDatoCarrito.fechaHora=new Date().toLocaleString()
-        
-    //     //imprimirTablaCompleta(productDatos)
-
-    // })
-    // .catch(error=>{
-    //     console.log(error)
-    // });
+   
     console.log("[carrito.js][obtenerDatosCarrito()][after fetch] : datosCarrito0",datosCarrito0)
     console.log("[carrito.js][obtenerDatosCarrito()][after fetch] : datosCarrito1",datosCarrito1)
     console.log("[carrito.js][obtenerDatosCarrito()][after fetch] : nuevoDatoCarrito",nuevoDatoCarrito)
@@ -168,20 +151,17 @@ async function guardarDatosOrden(datosCarritoLast){
     newPayload=JSON.stringify(datosCarritoLast)
     console.log("[carrito.js][guardarDatosOrden()](inicio)[antes de fetch] newPayload: ",newPayload)
     let datosOrdenConfirmar0=await fetch('/apiClientes/objetosOrden', {method: 'POST',headers:{'content-type':'application/json'},body: newPayload})
-    ///let datosOrden1=await datosOrden0.json()
     console.log("[carrito.js][guardarDatosOrden()][after fetch] : datosCarrito0",datosOrdenConfirmar0)
     
 
 }
 
 function eliminarCarrito(){
-    //console.log("círculo de delete 0.idProducto",idProducto)
-    //${idProducto}
+   
     console.log("[carrito.js][eliminarCarrito()](msg) (inicio)")
     fetch(`/apiClientes/carrito`,{method: 'DELETE',headers:{'content-type':'application/json'}})
     .then(response=>response)
     .then(productDatos=>{
-        //console.log("productosDBGetElimando: ",productDatos)
         console.log("[carrito.js][eliminarCarrito()](msg) productosDatos: ",productDatos)
     })
     .catch(error=>{
@@ -212,8 +192,5 @@ function notificarAdmin(productosComprados){
      });
 }
 
-
-
-//data-id="${product.id}"
 
 

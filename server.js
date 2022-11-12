@@ -7,10 +7,8 @@
 const express=require('express');
 const session=require('express-session')
 const app=express();
-
+//const config=require('./config.js')
 require('dotenv').config()
-
-//const hostname = process.env.HOSTNAME;
 
 const logd = require('./logging.js')
 const modname='[server.js]'

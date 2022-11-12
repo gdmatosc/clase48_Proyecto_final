@@ -111,10 +111,9 @@ class ApiAuth{
     /* #endregion */
 
     /* #region. 4.Authorization Admin */
-
-    getAdminConfig(username,id_proceso,nombre_plataforma,version_node,carpeta_proyecto,path_ejecucion,memoria_reservada,argumentos_entrada){
+    getAdminConfig(username,username_mongodb,tipo_persistencia,url_mongodb,mail_admin){
         logr.debug('[getOperacionesInfo]',{recurso:'[na]'})
-        return {username,id_proceso,nombre_plataforma,version_node,carpeta_proyecto,path_ejecucion,memoria_reservada,argumentos_entrada}
+        return {username,username_mongodb,tipo_persistencia,url_mongodb,mail_admin}
     }
 
     getDefault(){
